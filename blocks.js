@@ -3,11 +3,11 @@
 (() => {
   const { Engine, Bodies, Body, Composite, Mouse, MouseConstraint, Events } = Matter;
 
-  // [w, h] in units; filled = solid ink, otherwise outlined
+  // [w, h] in block units
   const SET = [
-    [3, 3, 1], [2, 2, 1], [2, 2, 1], [2, 2, 0],
-    [4, 1, 0], [4, 1, 1], [3, 1, 0], [3, 1, 1],
-    [2, 1, 0], [2, 1, 1], [2, 1, 0], [1, 1, 1], [1, 1, 0],
+    [3, 3], [2, 2], [2, 2], [2, 2],
+    [4, 1], [4, 1], [3, 1], [3, 1],
+    [2, 1], [2, 1], [2, 1], [1, 1], [1, 1],
   ];
 
   const canvas = document.getElementById("stage");
@@ -59,14 +59,13 @@
   }
 
   function drop() {
-    SET.forEach(([w, h, filled], i) => {
+    SET.forEach(([w, h], i) => {
       timers.push(setTimeout(() => {
         const x = U * 2 + Math.random() * (W - U * 4);
         const b = Bodies.rectangle(x, -U * 3, w * U - 1, h * U - 1, {
           density: 0.002, friction: 0.7, frictionStatic: 1, restitution: 0.04, sleepThreshold: 40,
           angle: (Math.random() - 0.5) * 0.5,
         });
-        b.filled = !!filled;
         blocks.push(b);
         Composite.add(engine.world, b);
       }, reduce ? 0 : i * 110));
@@ -83,7 +82,7 @@
       ctx.beginPath();
       b.vertices.forEach((v, i) => (i ? ctx.lineTo(v.x, v.y) : ctx.moveTo(v.x, v.y)));
       ctx.closePath();
-      ctx.fillStyle = b.filled ? colors.ink : colors.bg;
+      ctx.fillStyle = colors.bg;
       ctx.strokeStyle = colors.ink;
       ctx.fill(); ctx.stroke();
     }
