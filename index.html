@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ian Arthur — data engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f3f1ec; --ink: #161616; --mute: #9a968d; --faint: #dcd8cf; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121211; --ink: #ecebe6; --mute: #6f6c65; --faint: #2a2926; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 400 14px/1.6 "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    min-height: 100dvh; padding: 32px 24px; display: flex; justify-content: center;
+    -webkit-font-smoothing: antialiased; overscroll-behavior: none;
+  }
+  main { width: 100%; max-width: 420px; display: flex; flex-direction: column; }
+  h1 { margin: 0; font-size: 15px; font-weight: 500; letter-spacing: .01em; }
+  .tag { margin: 0 0 24px; color: var(--mute); }
+
+  #stage {
+    display: block; width: 100%; height: clamp(300px, 56dvh, 480px);
+    touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; outline: none;
+  }
+  #stage:active { cursor: grabbing; }
+
+  .row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; font-size: 12px; color: var(--mute); }
+  .link { font: inherit; background: none; border: 0; color: var(--mute); cursor: pointer; padding: 6px 0; text-decoration: underline; text-underline-offset: 3px; }
+  .link:hover, .link:focus-visible { color: var(--ink); }
+  .foot { margin-top: 28px; font-size: 12px; }
+  .foot a { color: var(--mute); text-underline-offset: 3px; }
+  .foot a:hover, .foot a:focus-visible { color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ian Arthur</h1>
+  <p class="tag">data engineer. i keep records moving.<br>richmond, va.</p>
+
+  <canvas id="stage" role="img" aria-label="A pile of blocks with gravity. Drag them to build a tower."></canvas>
+  <div class="row">
+    <span id="height">tallest stack: 0 blocks</span>
+    <button class="link" id="reset">reset</button>
+  </div>
+
+  <nav class="foot">
+    <a href="https://www.linkedin.com/in/ianmillerarthur326/" target="_blank" rel="noopener">linkedin</a>
+  </nav>
+</main>
+<script src="vendor/matter.min.js"></script>
+<script src="blocks.js"></script>
+</body>
+</html>
